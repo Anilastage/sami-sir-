@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahim Project    | Road Construction Specialists</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --dark: #111418;
+  --steel: #1c2128;
+  --orange: #f26419;
+  --orange-light: #ff8142;
+  --yellow: #f7b731;
+  --white: #f5f0eb;
+  --gray: #8a8f98;
+  --light-gray: #c8ccd4;
+  --border: rgba(242,100,25,0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%;
+  height: 70px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+
+.nav-logo span { color: var(--orange); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  color: var(--light-gray);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--orange); }
+
+.nav-cta {
+  background: var(--orange);
+  color: var(--black) !important;
+  padding: 0.5rem 1.4rem;
+  font-weight: 700 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--orange-light) !important; color: var(--black) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 26px; height: 2px; background: var(--white); transition: 0.3s; }
+
+/* ===== PAGES ===== */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ===== HERO ===== */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding-top: 70px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #111418 40%, #1a1208 100%);
+  z-index: 0;
+}
+
+.hero-stripes {
+  position: absolute; inset: 0; z-index: 1;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 60px,
+    rgba(242,100,25,0.03) 60px,
+    rgba(242,100,25,0.03) 61px
+  );
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 5%;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(242,100,25,0.1);
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(4rem, 9vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  color: var(--white);
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-title .accent { color: var(--orange); }
+.hero-title .outline {
+  -webkit-text-stroke: 2px var(--orange);
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--light-gray);
+  font-weight: 300;
+  max-width: 600px;
+  margin: 1.5rem 0 2.5rem;
+  line-height: 1.7;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--black);
+  padding: 0.9rem 2.2rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.btn-primary:hover {
+  background: var(--orange-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  padding: 0.9rem 2.2rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+  transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+.hero-stats {
+  display: flex; gap: 4rem;
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s 0.8s ease both;
+  flex-wrap: wrap;
+}
+
+.stat-item {}
+.stat-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3rem;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--gray);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+.hero-visual {
+  position: absolute;
+  right: 0; top: 70px; bottom: 0;
+  width: 45%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--dark) 10%, transparent 50%);
+  z-index: 2;
+}
+
+.hero-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--dark) 0%, transparent 20%, transparent 80%, var(--dark) 100%);
+  z-index: 2;
+}
+
+.road-illustration {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+/* Road SVG art */
+.road-art {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  padding: 7rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 1px;
+}
+
+.section-title span { color: var(--orange); }
+
+/* ===== SERVICES PAGE ===== */
+#services-page { padding-top: 70px; }
+
+.services-hero {
+  background: linear-gradient(135deg, #0d0f13 0%, #111a12 100%);
+  padding: 5rem 5% 4rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-hero::before {
+  content: 'SERVICES';
+  position: absolute;
+  right: -2%;
+  top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 15vw;
+  color: rgba(242,100,25,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 4rem;
+}
+
+.service-card {
+  background: var(--steel);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 0;
+  background: var(--orange);
+  transition: height 0.4s;
+}
+
+.service-card:hover::before { height: 100%; }
+.service-card:hover { background: #1f252d; }
+
+.service-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 4rem;
+  color: rgba(242,100,25,0.15);
+  line-height: 1;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+.service-card:hover .service-num { color: rgba(242,100,25,0.4); }
+
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.service-name {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.service-desc {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.service-features { list-style: none; }
+.service-features li {
+  color: var(--light-gray);
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.service-features li::before {
+  content: '→';
+  color: var(--orange);
+  font-size: 0.8rem;
+}
+
+/* ===== PROJECTS PAGE ===== */
+#projects-page { padding-top: 70px; }
+
+.projects-hero {
+  background: var(--black);
+  padding: 5rem 5% 4rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-hero::before {
+  content: 'PROJECTS';
+  position: absolute;
+  right: -2%;
+  top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 15vw;
+  color: rgba(242,100,25,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.projects-filter {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gray);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--black);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.project-card {
+  background: var(--steel);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: var(--black);
+  overflow: hidden;
+  position: relative;
+}
+
+.project-thumb-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+}
+
+.project-card:hover .project-thumb-inner { transform: scale(1.05); }
+
+/* SVG construction scene thumbnails */
+.thumb-scene {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-info {
+  padding: 2rem;
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.project-card:hover .project-info { border-color: var(--orange); }
+
+.project-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+
+.project-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.8rem;
+}
+
+.project-meta {
+  display: flex; gap: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.project-meta span::before {
+  color: var(--orange);
+  margin-right: 0.4rem;
+}
+
+/* ===== ABOUT PAGE ===== */
+#about-page { padding-top: 70px; }
+
+.about-hero {
+  background: linear-gradient(135deg, #0a0c10 0%, #101318 100%);
+  padding: 5rem 5% 4rem;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+
+.about-hero::before {
+  content: 'ABOUT';
+  position: absolute;
+  right: -2%;
+  top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 20vw;
+  color: rgba(242,100,25,0.04);
+  pointer-events: none;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  padding: 6rem 0;
+}
+
+.about-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--light-gray);
+}
+
+.about-body p { margin-bottom: 1.5rem; }
+
+.about-body strong { color: var(--white); font-weight: 600; }
+
+.about-highlight {
+  border-left: 3px solid var(--orange);
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--white);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.about-right {}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.value-item {
+  background: var(--steel);
+  padding: 2rem;
+  transition: background 0.2s;
+}
+
+.value-item:hover { background: #1f252d; }
+
+.value-icon { font-size: 2rem; margin-bottom: 1rem; }
+.value-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.value-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+.team-section { margin-top: 2rem; }
+
+.milestones {
+  margin-top: 4rem;
+  position: relative;
+}
+
+.milestone-line {
+  position: absolute;
+  left: 120px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.milestone {
+  display: flex; gap: 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.milestone-year {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.3rem;
+  color: var(--orange);
+  min-width: 100px;
+  text-align: right;
+}
+
+.milestone-dot {
+  width: 12px; height: 12px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(242,100,25,0.2);
+}
+
+.milestone-content {}
+.milestone-title {
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.milestone-desc { font-size: 0.85rem; color: var(--gray); }
+
+/* ===== CONTACT PAGE ===== */
+#contact-page { padding-top: 70px; }
+
+.contact-hero {
+  background: linear-gradient(135deg, #080a0d 0%, #0e1117 100%);
+  padding: 5rem 5% 4rem;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  padding: 5rem 0;
+}
+
+.contact-info {}
+.contact-info-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.contact-info-sub {
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
+
+.contact-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+
+.contact-item-icon {
+  width: 44px; height: 44px;
+  background: rgba(242,100,25,0.1);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.contact-item-text {}
+.contact-item-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.2rem;
+}
+.contact-item-value {
+  color: var(--light-gray);
+  font-size: 0.95rem;
+}
+
+/* QUOTE FORM */
+.quote-form {
+  background: var(--steel);
+  padding: 3rem;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--orange), var(--yellow));
+}
+
+.form-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex; flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-group.full { grid-column: 1 / -1; margin-bottom: 0; }
+
+label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+input, select, textarea {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  padding: 0.85rem 1rem;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--orange);
+}
+
+select option { background: var(--steel); }
+
+textarea { resize: vertical; min-height: 120px; }
+
+.form-submit {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.form-submit .btn-primary {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 1rem;
+  text-align: center;
+  clip-path: none;
+}
+
+.form-note {
+  font-size: 0.78rem;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+}
+
+.form-success.show { display: block; }
+
+.success-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.success-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2rem;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+
+.success-msg { color: var(--gray); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  padding: 4rem 5% 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.footer-logo span { color: var(--orange); }
+
+.footer-desc {
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1.2rem;
+}
+
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-links a {
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+
+.footer-copy { color: var(--gray); font-size: 0.85rem; }
+
+.footer-tagline {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: rgba(242,100,25,0.4);
+}
+
+/* ===== HOME PAGE EXTRA SECTIONS ===== */
+.services-preview {
+  background: var(--black);
+  padding: 7rem 5%;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.services-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 4rem;
+}
+
+.preview-card {
+  background: var(--steel);
+  padding: 2.5rem;
+  position: relative;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.preview-card:hover { background: #1f252d; }
+.preview-card:hover .preview-arrow { color: var(--orange); transform: translateX(5px); }
+
+.preview-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+.preview-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+}
+.preview-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
+.preview-arrow {
+  font-size: 1.5rem;
+  color: var(--gray);
+  margin-top: 1.5rem;
+  transition: all 0.3s;
+  display: block;
+}
+
+.why-section {
+  padding: 7rem 5%;
+  background: linear-gradient(135deg, #0d1117 0%, #111820 100%);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-top: 4rem;
+  align-items: center;
+}
+
+.why-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.why-item {
+  display: flex; gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(242,100,25,0.04);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.why-item:hover { border-color: var(--orange); }
+
+.why-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5rem;
+  color: var(--orange);
+  opacity: 0.4;
+  line-height: 1;
+  min-width: 40px;
+}
+
+.why-title {
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+}
+
+.why-desc { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+.why-visual {
+  position: relative;
+}
+
+.why-visual-inner {
+  background: var(--steel);
+  border: 1px solid var(--border);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-visual-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(to right, var(--orange), var(--yellow));
+}
+
+.stats-big {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.stat-big { text-align: center; padding: 1.5rem; }
+.stat-big-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 4rem;
+  color: var(--orange);
+  line-height: 1;
+  display: block;
+}
+.stat-big-label {
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.cta-banner {
+  background: var(--orange);
+  padding: 5rem 5%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(0,0,0,0.05) 20px,
+    rgba(0,0,0,0.05) 21px
+  );
+}
+
+.cta-banner-content { position: relative; z-index: 1; }
+
+.cta-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  color: var(--black);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.cta-sub {
+  color: rgba(0,0,0,0.6);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.btn-dark {
+  background: var(--black);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.btn-dark:hover { background: #1c2128; transform: translateY(-2px); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--border);
+    gap: 1.2rem;
+  }
+  .hero-visual { display: none; }
+  .hero-content { padding-right: 5%; }
+  .services-preview-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 2rem; }
+  .stats-big { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-outline { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Road<span>Craft</span>  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('services')">Services</a></li>
+    <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+    <li><a href="#" onclick="showPage('about')">About</a></li>
+    <li><a href="#" onclick="showPage('contact')" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="home">
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stripes"></div>
+    <div class="hero-content">
+      <div class="hero-tag">⚡ Trusted Road Construction Partner</div>
+      <h1 class="hero-title">
+        BUILDING<br>
+        <span class="accent">ROADS</span><br>
+        <span class="outline">THAT LAST</span>
+      </h1>
+      <p class="hero-sub">Specialists in Reinforced Earth (RE) panel systems, road construction, and  structure development. From casting to erection — we deliver excellence on every kilometre.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Get a Free Quote</button>
+        <button class="btn-outline" onclick="showPage('projects')">View Projects</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">KM Roads Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">80+</div>
+          <div class="stat-label">Projects Done</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">On-Time Delivery</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="road-art" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sky gradient -->
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0a0c12"/>
+            <stop offset="100%" stop-color="#1a1510"/>
+          </linearGradient>
+          <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2a2a2a"/>
+            <stop offset="100%" stop-color="#1a1a1a"/>
+          </linearGradient>
+          <linearGradient id="soilGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#8B5E3C"/>
+            <stop offset="100%" stop-color="#6B4423"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="700" fill="url(#skyGrad)"/>
+        <!-- distant towers -->
+        <rect x="80" y="200" width="4" height="180" fill="#333" opacity="0.5"/>
+        <rect x="160" y="220" width="4" height="160" fill="#333" opacity="0.4"/>
+        <rect x="480" y="190" width="4" height="190" fill="#333" opacity="0.5"/>
+        <!-- horizon mounds -->
+        <ellipse cx="100" cy="420" rx="120" ry="40" fill="#2a1f15" opacity="0.8"/>
+        <ellipse cx="500" cy="430" rx="140" ry="50" fill="#2a1f15" opacity="0.7"/>
+        <!-- RE panel wall left -->
+        <g opacity="0.9">
+          <rect x="30" y="350" width="80" height="130" fill="#c8bfaa" rx="2"/>
+          <rect x="30" y="350" width="80" height="130" fill="none" stroke="#a09080" stroke-width="1" opacity="0.5"/>
+          <!-- holes in panel -->
+          <rect x="45" y="370" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="45" y="395" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="45" y="420" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="75" y="380" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="75" y="408" width="15" height="10" fill="#6a6050" rx="1"/>
+
+          <rect x="115" y="340" width="80" height="140" fill="#ccc0aa" rx="2"/>
+          <rect x="130" y="360" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="130" y="385" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="130" y="410" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="165" y="370" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="165" y="395" width="15" height="10" fill="#6a6050" rx="1"/>
+        </g>
+        <!-- RE panel wall right -->
+        <g opacity="0.9">
+          <rect x="490" y="360" width="80" height="120" fill="#c8bfaa" rx="2"/>
+          <rect x="505" y="380" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="505" y="405" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="540" y="373" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="540" y="398" width="15" height="10" fill="#6a6050" rx="1"/>
+          <rect x="540" y="423" width="15" height="10" fill="#6a6050" rx="1"/>
+        </g>
+        <!-- Road surface perspective -->
+        <path d="M 140 480 L 460 480 L 540 700 L 60 700 Z" fill="url(#roadGrad)"/>
+        <!-- lane markings -->
+        <path d="M 298 530 L 302 530 L 318 620 L 282 620 Z" fill="#f7b731" opacity="0.8"/>
+        <path d="M 295 560 L 305 560 L 315 590 L 285 590 Z" fill="#f7b731" opacity="0.6"/>
+        <!-- road edges -->
+        <path d="M 140 480 L 180 700 L 160 700 L 120 480 Z" fill="#888" opacity="0.3"/>
+        <path d="M 460 480 L 420 700 L 440 700 L 480 480 Z" fill="#888" opacity="0.3"/>
+        <!-- soil embankment -->
+        <path d="M 0 480 L 140 480 L 60 700 L 0 700 Z" fill="url(#soilGrad)" opacity="0.8"/>
+        <path d="M 600 480 L 460 480 L 540 700 L 600 700 Z" fill="url(#soilGrad)" opacity="0.8"/>
+        <!-- Orange accent lines -->
+        <line x1="0" y1="478" x2="600" y2="478" stroke="#f26419" stroke-width="2" opacity="0.4"/>
+        <!-- Construction crane silhouette -->
+        <g opacity="0.7">
+          <rect x="360" y="240" width="8" height="200" fill="#555"/>
+          <rect x="340" y="240" width="60" height="6" fill="#f26419" opacity="0.7"/>
+          <rect x="352" y="220" width="4" height="30" fill="#444"/>
+          <line x1="368" y1="246" x2="395" y2="295" stroke="#888" stroke-width="2"/>
+          <line x1="368" y1="246" x2="345" y2="295" stroke="#888" stroke-width="2"/>
+          <!-- hanging panel -->
+          <rect x="355" y="295" width="30" height="20" fill="#ccc0aa" opacity="0.7"/>
+          <line x1="360" y1="295" x2="360" y2="276" stroke="#888" stroke-width="1"/>
+          <line x1="380" y1="295" x2="380" y2="276" stroke="#888" stroke-width="1"/>
+        </g>
+        <!-- sun glow -->
+        <circle cx="300" cy="150" r="60" fill="#f26419" opacity="0.06"/>
+        <circle cx="300" cy="150" r="35" fill="#f7b731" opacity="0.08"/>
+        <circle cx="300" cy="150" r="15" fill="#ffe" opacity="0.1"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <div class="services-preview">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-title">CORE <span>SERVICES</span></h2>
+      <div class="services-preview-grid">
+        <div class="preview-card" onclick="showPage('services')">
+          <div class="preview-icon">🏗️</div>
+          <div class="preview-name">Casting of RE Panels</div>
+          <div class="preview-desc">Precision manufacturing of Reinforced Earth (RE) panels in our dedicated casting yard using certified moulds, controlled concrete mix, and quality inspection.</div>
+          <span class="preview-arrow">→</span>
+        </div>
+        <div class="preview-card" onclick="showPage('services')">
+          <div class="preview-icon">🔧</div>
+          <div class="preview-name">Erection of RE Panels</div>
+          <div class="preview-desc">Expert erection and installation of RE wall panels using hydra cranes and trained crews, ensuring plumb alignment and structural integrity.</div>
+          <span class="preview-arrow">→</span>
+        </div>
+        <div class="preview-card" onclick="showPage('services')">
+          <div class="preview-icon">🛣️</div>
+          <div class="preview-name">Level Pad & Road Prep</div>
+          <div class="preview-desc">Full road preparation including subgrade levelling, compaction, formation of level pads, and pre-work for RE wall foundations and road surface.</div>
+          <span class="preview-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div class="why-section">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="why-grid">
+        <div>
+          <div class="section-tag">Why Choose Us</div>
+          <h2 class="section-title" style="margin-bottom:3rem;">THE <span>Mahim Project Solution</span><br>DIFFERENCE</h2>
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-num">01</div>
+              <div>
+                <div class="why-title">RE Panel Specialists</div>
+                <div class="why-desc">We operate our own dedicated casting yards with precision steel moulds, ensuring every panel meets IS code specifications and project tolerances.</div>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-num">02</div>
+              <div>
+                <div class="why-title">Full-Fleet Equipment</div>
+                <div class="why-desc">We own and operate Escorts Hydra cranes, ACE pick-and-carry cranes, low-bed trailers, and compaction equipment for complete project control.</div>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-num">03</div>
+              <div>
+                <div class="why-title">Proven Track Record</div>
+                <div class="why-desc">Over a decade of successfully delivering highway and expressway RE wall projects across multiple states for NHAI and state PWD authorities.</div>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-num">04</div>
+              <div>
+                <div class="why-title">Safety First Culture</div>
+                <div class="why-desc">Every site follows mandatory PPE protocols, trained rigging crews, and daily safety briefings ensuring zero LTI record on active projects.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual">
+          <div class="why-visual-inner">
+            <div class="section-tag" style="margin-bottom:2rem;">Performance at a Glance</div>
+            <div class="stats-big">
+              <div class="stat-big">
+                <span class="stat-big-num">500+</span>
+                <div class="stat-big-label">KM Constructed</div>
+              </div>
+              <div class="stat-big">
+                <span class="stat-big-num">12+</span>
+                <div class="stat-big-label">Years Active</div>
+              </div>
+              <div class="stat-big">
+                <span class="stat-big-num">80+</span>
+                <div class="stat-big-label">Projects</div>
+              </div>
+              <div class="stat-big">
+                <span class="stat-big-num">0</span>
+                <div class="stat-big-label">LTI Record</div>
+              </div>
+            </div>
+            <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border);">
+              <div class="section-tag" style="margin-bottom:1rem;">Certifications</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <span style="background:rgba(242,100,25,0.1);border:1px solid var(--border);padding:0.4rem 0.8rem;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light-gray);">ISO 9001:2015</span>
+                <span style="background:rgba(242,100,25,0.1);border:1px solid var(--border);padding:0.4rem 0.8rem;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light-gray);">NHAI Approved</span>
+                <span style="background:rgba(242,100,25,0.1);border:1px solid var(--border);padding:0.4rem 0.8rem;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light-gray);">PWD Empanelled</span>
+                <span style="background:rgba(242,100,25,0.1);border:1px solid var(--border);padding:0.4rem 0.8rem;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light-gray);">IS Code Compliant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <div class="cta-banner-content">
+      <h2 class="cta-title">READY TO BUILD YOUR ROAD?</h2>
+      <p class="cta-sub">Get a detailed quote for your RE panel or road construction project within 24 hours.</p>
+      <button class="btn-dark" onclick="showPage('contact')">Request a Free Quote →</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Road<span>Craft</span>  </div>
+        <p class="footer-desc">Specialists in Reinforced Earth panel casting, erection, and road construction  structure across India. Built on precision, delivered on time.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Casting of RE Panels</a></li>
+          <li><a href="#">Erection of RE Panels</a></li>
+          <li><a href="#">Level Pad Construction</a></li>
+          <li><a href="#">Road Formation</a></li>
+          <li><a href="#">Subgrade Preparation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 +91 98765 43210</a></li>
+          <li><a href="#">✉️ info@Mahim Project Solution .in</a></li>
+          <li><a href="#">📍 Hyderabad, Telangana</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Mahim Project Solution  . All rights reserved.</span>
+      <span class="footer-tagline">BUILDING INDIA'S ROADS</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ SERVICES PAGE ============ -->
+<div class="page" id="services">
+  <div class="services-hero" style="padding-top:5rem;">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-tag">What We Offer</div>
+      <h1 class="section-title">OUR <span>SERVICES</span></h1>
+      <p style="color:var(--gray);max-width:600px;margin-top:1rem;font-size:1.05rem;line-height:1.7;">From panel casting to final road formation — we provide end-to-end    for RE wall and road construction projects.</p>
+    </div>
+  </div>
+  <div style="padding:0 5%;max-width:1400px;margin:0 auto;">
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">🏭</div>
+        <div class="service-name">Casting of RE Panels</div>
+        <div class="service-desc">Our in-house casting yards produce high-quality Reinforced Earth (RE) facing panels. We use precision steel moulds, M40-grade concrete, and certified reinforcement to ensure every panel meets project specifications and IS code requirements.</div>
+        <ul class="service-features">
+          <li>Dedicated casting yard with steel proprietary moulds</li>
+          <li>M40 / M45 grade concrete as per design</li>
+          <li>Rebar cage fabrication and placement</li>
+          <li>Wet curing and quality inspection</li>
+          <li>Stack storage and dispatch management</li>
+          <li>Batch production for large-scale projects</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">🏗️</div>
+        <div class="service-name">Erection of RE Panels</div>
+        <div class="service-desc">Expert installation and erection of RE facing panels using pick-and-carry cranes and trained rigging teams. We ensure precise alignment, correct panel facing, geogrid layer placement, and compaction of engineered fill to achieve structurally sound RE walls.</div>
+        <ul class="service-features">
+          <li>Escorts Hydra & ACE crane operations</li>
+          <li>Panel plumb and level setting</li>
+          <li>Geogrid layer installation at specified intervals</li>
+          <li>Structural fill placement and compaction</li>
+          <li>Coping and top element installation</li>
+          <li>Final alignment checks and sign-off</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">🛣️</div>
+        <div class="service-name">Level Pad Construction</div>
+        <div class="service-desc">We construct precision-levelled concrete pad foundations at the base of RE walls. Level pads are critical to ensure correct panel bearing, plumb walls, and long-term structural performance. Our teams use laser levels and surveying tools for accurate placement.</div>
+        <ul class="service-features">
+          <li>PCC level pad casting in trenches</li>
+          <li>Surveying and level marking</li>
+          <li>Trench excavation and preparation</li>
+          <li>Correct elevation as per design drawings</li>
+          <li>Curing and inspection before panel erection</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">⛏️</div>
+        <div class="service-name">Road Formation & Earthwork</div>
+        <div class="service-desc">Comprehensive road formation services including bulk earthwork, embankment construction, subgrade preparation, and compaction. We work with motorgraders, compactors, and tippers to build stable road formations ready for pavement layers.</div>
+        <ul class="service-features">
+          <li>Bulk earthwork and embankment filling</li>
+          <li>Motorgrader profiling and trimming</li>
+          <li>Compaction to required Proctor density</li>
+          <li>Subgrade levelling and shaping</li>
+          <li>Camber and cross-fall as per design</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">🚚</div>
+        <div class="service-name">Material Transport & Logistics</div>
+        <div class="service-desc">We manage the complete logistics chain — from transporting cast RE panels from yard to site via low-bed trailers, to managing aggregate and fill material supply for construction. Our fleet ensures timely delivery and safe handling of oversized loads.</div>
+        <ul class="service-features">
+          <li>Low-bed trailer transport for RE panels</li>
+          <li>Route survey and permission coordination</li>
+          <li>On-site panel stacking and management</li>
+          <li>Aggregate and soil material haulage</li>
+          <li>Equipment mobilisation and logistics</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">📋</div>
+        <div class="service-name">Project Management & QA</div>
+        <div class="service-desc">Our experienced project managers and site engineers oversee every stage of construction with rigorous quality assurance procedures. We maintain complete documentation, material test records, and compliance reports for client submission.</div>
+        <ul class="service-features">
+          <li>Dedicated site engineers and supervisors</li>
+          <li>QA/QC documentation and records</li>
+          <li>Third-party lab test coordination</li>
+          <li>Progress reporting and photography</li>
+          <li>DPR and as-built drawing submission</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="cta-banner" style="margin-top:5rem;">
+    <div class="cta-banner-content">
+      <h2 class="cta-title">NEED A CUSTOM SOLUTION?</h2>
+      <p class="cta-sub">Tell us about your project and we'll send you a detailed quote within 24 hours.</p>
+      <button class="btn-dark" onclick="showPage('contact')">Get a Quote Now →</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Road<span>Craft</span>  </div>
+        <p class="footer-desc">Specialists in RE panel systems and road construction across India.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Casting of RE Panels</a></li>
+          <li><a href="#">Erection of RE Panels</a></li>
+          <li><a href="#">Level Pad Construction</a></li>
+          <li><a href="#">Road Formation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 +91 98765 43210</a></li>
+          <li><a href="#">✉️ info@Mahim Project Solution .in</a></li>
+          <li><a href="#">📍 Hyderabad, Telangana</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Mahim Project Solution  . All rights reserved.</span>
+      <span class="footer-tagline">BUILDING INDIA'S ROADS</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ PROJECTS PAGE ============ -->
+<div class="page" id="projects">
+  <div class="projects-hero" style="padding-top:5rem;">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-tag">Our Work</div>
+      <h1 class="section-title">FEATURED <span>PROJECTS</span></h1>
+      <p style="color:var(--gray);max-width:600px;margin-top:1rem;font-size:1.05rem;line-height:1.7;">A selection of completed and ongoing road construction and RE panel projects across India.</p>
+      <div class="projects-filter">
+        <button class="filter-btn active">All Projects</button>
+        <button class="filter-btn">RE Wall</button>
+        <button class="filter-btn">Road Formation</button>
+        <button class="filter-btn">Casting Yard</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:3rem 5% 5rem;max-width:1400px;margin:0 auto;">
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <defs>
+                <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#87CEEB" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#FDB97D" stop-opacity="0.4"/>
+                </linearGradient>
+              </defs>
+              <rect width="400" height="250" fill="#0d1117"/>
+              <rect width="400" height="150" fill="url(#sky1)"/>
+              <!-- RE wall panels row -->
+              <rect x="0" y="130" width="400" height="90" fill="#8B5E3C" opacity="0.6"/>
+              <rect x="0" y="120" width="60" height="100" fill="#c8bfaa" rx="1"/>
+              <rect x="5" y="135" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="5" y="155" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="38" y="143" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="62" y="115" width="60" height="105" fill="#ccc0aa" rx="1"/>
+              <rect x="68" y="130" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="68" y="150" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="100" y="140" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="125" y="118" width="60" height="102" fill="#c8bfaa" rx="1"/>
+              <rect x="190" y="122" width="60" height="98" fill="#ccc0aa" rx="1"/>
+              <rect x="255" y="119" width="60" height="101" fill="#c8bfaa" rx="1"/>
+              <rect x="320" y="121" width="60" height="99" fill="#ccc0aa" rx="1"/>
+              <!-- Road in front -->
+              <rect x="0" y="200" width="400" height="50" fill="#2a2a2a"/>
+              <rect x="180" y="215" width="40" height="5" fill="#f7b731" opacity="0.6"/>
+              <!-- Crane -->
+              <rect x="340" y="60" width="6" height="120" fill="#f26419" opacity="0.8"/>
+              <rect x="300" y="60" width="50" height="5" fill="#f26419" opacity="0.8"/>
+              <line x1="346" y1="65" x2="346" y2="115" stroke="#888" stroke-width="2"/>
+              <rect x="338" y="115" width="16" height="10" fill="#c8bfaa" opacity="0.7"/>
+              <text x="20" y="20" fill="#f26419" font-size="11" font-family="sans-serif" font-weight="bold" opacity="0.8">RE WALL ERECTION</text>
+            </svg>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">RE Wall · Ongoing</div>
+          <div class="project-title">NH-44 RE Panel Wall — Andhra Pradesh</div>
+          <div class="project-meta">
+            <span>📍 Kurnool, AP</span>
+            <span>📏 2.4 km wall</span>
+            <span>🗓️ 2025–26</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <rect width="400" height="250" fill="#0a0c0f"/>
+              <!-- Sky -->
+              <rect width="400" height="130" fill="#1a1f2e" opacity="0.8"/>
+              <!-- Casting yard - molds from above perspective -->
+              <rect x="20" y="20" width="55" height="40" fill="#2a2a2a" stroke="#f26419" stroke-width="1" rx="1"/>
+              <rect x="85" y="20" width="55" height="40" fill="#2a2a2a" stroke="#555" stroke-width="1" rx="1"/>
+              <rect x="150" y="20" width="55" height="40" fill="#2a2a2a" stroke="#f26419" stroke-width="1" rx="1"/>
+              <rect x="215" y="20" width="55" height="40" fill="#2a2a2a" stroke="#555" stroke-width="1" rx="1"/>
+              <rect x="280" y="20" width="55" height="40" fill="#2a2a2a" stroke="#f26419" stroke-width="1" rx="1"/>
+              <rect x="20" y="70" width="55" height="40" fill="#2a2a2a" stroke="#555" stroke-width="1" rx="1"/>
+              <rect x="85" y="70" width="55" height="40" fill="#2a2a2a" stroke="#f26419" stroke-width="1" rx="1"/>
+              <rect x="150" y="70" width="55" height="40" fill="#3a3020" stroke="#555" stroke-width="1" rx="1"/>
+              <rect x="215" y="70" width="55" height="40" fill="#2a2a2a" stroke="#f26419" stroke-width="1" rx="1"/>
+              <rect x="280" y="70" width="55" height="40" fill="#2a2a2a" stroke="#555" stroke-width="1" rx="1"/>
+              <!-- Crane arm -->
+              <line x1="200" y1="10" x2="200" y2="130" stroke="#f26419" stroke-width="3" opacity="0.6"/>
+              <line x1="50" y1="10" x2="350" y2="10" stroke="#f26419" stroke-width="4" opacity="0.7"/>
+              <!-- Stacked panels on right -->
+              <rect x="350" y="30" width="40" height="8" fill="#c8bfaa" rx="1"/>
+              <rect x="350" y="40" width="40" height="8" fill="#bbb0a0" rx="1"/>
+              <rect x="350" y="50" width="40" height="8" fill="#c8bfaa" rx="1"/>
+              <rect x="350" y="60" width="40" height="8" fill="#bbb0a0" rx="1"/>
+              <rect x="350" y="70" width="40" height="8" fill="#c8bfaa" rx="1"/>
+              <!-- Ground -->
+              <rect x="0" y="130" width="400" height="120" fill="#1a1208" opacity="0.7"/>
+              <!-- Truck -->
+              <rect x="30" y="150" width="100" height="35" fill="#f7b731" opacity="0.7" rx="2"/>
+              <rect x="100" y="140" width="40" height="45" fill="#e6a820" opacity="0.7" rx="2"/>
+              <circle cx="55" cy="188" r="10" fill="#333"/>
+              <circle cx="110" cy="188" r="10" fill="#333"/>
+              <text x="20" y="245" fill="#f26419" font-size="11" font-family="sans-serif" font-weight="bold" opacity="0.8">CASTING YARD OPERATIONS</text>
+            </svg>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Casting Yard · Completed</div>
+          <div class="project-title">RE Panel Casting Yard — Telangana</div>
+          <div class="project-meta">
+            <span>📍 Nalgonda, TG</span>
+            <span>🧱 12,000 panels</span>
+            <span>🗓️ 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <rect width="400" height="250" fill="#0e1005"/>
+              <rect width="400" height="120" fill="#0f1820" opacity="0.9"/>
+              <!-- Road perspective -->
+              <path d="M 160 120 L 240 120 L 400 250 L 0 250 Z" fill="#3a3530" opacity="0.9"/>
+              <!-- Lane markings -->
+              <path d="M 195 145 L 205 145 L 250 250 L 150 250 Z" fill="#f7b731" opacity="0.4"/>
+              <!-- Soil sides -->
+              <path d="M 0 120 L 160 120 L 0 250 Z" fill="#5a3a1a" opacity="0.8"/>
+              <path d="M 400 120 L 240 120 L 400 250 Z" fill="#5a3a1a" opacity="0.8"/>
+              <!-- Completed RE walls side panels -->
+              <rect x="0" y="80" width="40" height="60" fill="#c8bfaa" opacity="0.7"/>
+              <rect x="42" y="75" width="40" height="65" fill="#ccc0aa" opacity="0.7"/>
+              <rect x="84" y="78" width="40" height="62" fill="#c8bfaa" opacity="0.7"/>
+              <rect x="126" y="80" width="38" height="60" fill="#ccc0aa" opacity="0.7"/>
+              <!-- power lines -->
+              <line x1="50" y1="20" x2="350" y2="30" stroke="#666" stroke-width="1.5"/>
+              <line x1="50" y1="30" x2="350" y2="40" stroke="#555" stroke-width="1"/>
+              <rect x="50" y="10" width="5" height="100" fill="#666"/>
+              <rect x="200" y="12" width="5" height="100" fill="#666"/>
+              <rect x="350" y="10" width="5" height="100" fill="#666"/>
+              <text x="20" y="20" fill="#f26419" font-size="11" font-family="sans-serif" font-weight="bold" opacity="0.8">ROAD FORMATION</text>
+            </svg>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Road Formation · Completed</div>
+          <div class="project-title">Ring Road Widening Project — Karnataka</div>
+          <div class="project-meta">
+            <span>📍 Mysuru, KA</span>
+            <span>📏 18 km road</span>
+            <span>🗓️ 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <rect width="400" height="250" fill="#0a0d15"/>
+              <!-- Sky -->
+              <rect width="400" height="140" fill="#111828" opacity="0.8"/>
+              <!-- Multiple cranes lifting panels -->
+              <!-- Crane 1 (orange ACE) -->
+              <rect x="30" y="70" width="45" height="60" fill="#f26419" opacity="0.7" rx="3"/>
+              <rect x="5" y="70" width="30" height="20" fill="#e55a10" opacity="0.7" rx="2"/>
+              <rect x="60" y="30" width="5" height="60" fill="#f26419" opacity="0.9"/>
+              <line x1="62" y1="30" x2="130" y2="60" stroke="#f26419" stroke-width="3" opacity="0.8"/>
+              <line x1="115" y1="62" x2="115" y2="105" stroke="#888" stroke-width="2"/>
+              <rect x="105" y="105" width="22" height="14" fill="#c8bfaa"/>
+              <!-- Crane 2 (yellow Escorts) -->
+              <rect x="290" y="80" width="40" height="55" fill="#f7b731" opacity="0.8" rx="3"/>
+              <rect x="280" y="75" width="55" height="3" fill="#f7b731"/>
+              <rect x="330" y="45" width="4" height="40" fill="#f7b731"/>
+              <line x1="332" y1="45" x2="270" y2="65" stroke="#f7b731" stroke-width="2.5"/>
+              <line x1="275" y1="65" x2="275" y2="110" stroke="#888" stroke-width="2"/>
+              <rect x="265" y="110" width="22" height="14" fill="#c8bfaa"/>
+              <!-- RE panels being installed -->
+              <rect x="140" y="100" width="50" height="80" fill="#c8bfaa" rx="1"/>
+              <rect x="145" y="115" width="10" height="7" fill="#777" rx="1"/>
+              <rect x="145" y="133" width="10" height="7" fill="#777" rx="1"/>
+              <rect x="175" y="122" width="10" height="7" fill="#777" rx="1"/>
+              <rect x="195" y="103" width="50" height="77" fill="#ccc0aa" rx="1"/>
+              <rect x="200" y="118" width="10" height="7" fill="#777" rx="1"/>
+              <rect x="200" y="136" width="10" height="7" fill="#777" rx="1"/>
+              <!-- Ground -->
+              <rect x="0" y="175" width="400" height="75" fill="#2a1f10"/>
+              <!-- workers -->
+              <circle cx="180" cy="172" r="5" fill="#555"/>
+              <rect x="178" y="177" width="4" height="12" fill="#444"/>
+              <circle cx="220" cy="170" r="5" fill="#555"/>
+              <rect x="218" y="175" width="4" height="12" fill="#3a5"/>
+              <text x="20" y="20" fill="#f26419" font-size="11" font-family="sans-serif" font-weight="bold" opacity="0.8">RE PANEL ERECTION</text>
+            </svg>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">RE Wall · Completed</div>
+          <div class="project-title">NHAI Expressway RE Wall — Tamil Nadu</div>
+          <div class="project-meta">
+            <span>📍 Salem, TN</span>
+            <span>🧱 8,400 panels</span>
+            <span>🗓️ 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <rect width="400" height="250" fill="#080d08"/>
+              <rect width="400" height="130" fill="#0d1a0d" opacity="0.8"/>
+              <!-- Geotextile / white fabric on road -->
+              <rect x="50" y="140" width="300" height="80" fill="#e8e5df" opacity="0.8"/>
+              <!-- RE wall in background -->
+              <rect x="0" y="100" width="45" height="110" fill="#c8bfaa" opacity="0.8"/>
+              <rect x="47" y="96" width="45" height="114" fill="#ccc0aa" opacity="0.8"/>
+              <rect x="94" y="98" width="45" height="112" fill="#c8bfaa" opacity="0.8"/>
+              <rect x="141" y="100" width="45" height="110" fill="#ccc0aa" opacity="0.8"/>
+              <rect x="188" y="97" width="45" height="113" fill="#c8bfaa" opacity="0.8"/>
+              <rect x="235" y="99" width="45" height="111" fill="#ccc0aa" opacity="0.8"/>
+              <rect x="282" y="96" width="45" height="114" fill="#c8bfaa" opacity="0.8"/>
+              <rect x="329" y="100" width="45" height="110" fill="#ccc0aa" opacity="0.8"/>
+              <!-- Workers handling fabric -->
+              <circle cx="140" cy="148" r="5" fill="#666"/>
+              <rect x="138" y="153" width="4" height="12" fill="#555"/>
+              <circle cx="180" cy="150" r="5" fill="#666"/>
+              <rect x="178" y="155" width="4" height="12" fill="#f26419" opacity="0.8"/>
+              <circle cx="250" cy="148" r="5" fill="#666"/>
+              <rect x="248" y="153" width="4" height="12" fill="#666" opacity="0.8"/>
+              <!-- Soil embankment -->
+              <rect x="0" y="200" width="400" height="50" fill="#5a3a1a"/>
+              <text x="20" y="25" fill="#f26419" font-size="11" font-family="sans-serif" font-weight="bold" opacity="0.8">GEOTEXTILE & FILL WORK</text>
+            </svg>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Geotextile · Ongoing</div>
+          <div class="project-title">State Highway Embankment — AP</div>
+          <div class="project-meta">
+            <span>📍 Guntur, AP</span>
+            <span>📏 5.2 km</span>
+            <span>🗓️ 2025–26</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+              <rect width="400" height="250" fill="#0a0c0f"/>
+              <!-- Long straight road aerial view -->
+              <rect x="0" y="0" width="400" height="250" fill="#1a1a1a" opacity="0.5"/>
+              <!-- Road strip -->
+              <rect x="130" y="0" width="140" height="250" fill="#2d2d2d"/>
+              <!-- Lane markings -->
+              <rect x="197" y="10" width="6" height="35" fill="#f7b731" opacity="0.7"/>
+              <rect x="197" y="60" width="6" height="35" fill="#f7b731" opacity="0.7"/>
+              <rect x="197" y="110" width="6" height="35" fill="#f7b731" opacity="0.7"/>
+              <rect x="197" y="160" width="6" height="35" fill="#f7b731" opacity="0.7"/>
+              <rect x="197" y="210" width="6" height="35" fill="#f7b731" opacity="0.7"/>
+              <!-- RE walls both sides -->
+              <rect x="80" y="0" width="50" height="250" fill="#b8af99"/>
+              <rect x="270" y="0" width="50" height="250" fill="#c0b7a2"/>
+              <!-- Wall holes -->
+              <rect x="88" y="20" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="88" y="50" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="88" y="80" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="88" y="110" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="88" y="140" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="88" y="170" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="88" y="200" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="110" y="35" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="110" y="65" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="110" y="95" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="110" y="125" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="25" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="55" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="85" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="115" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="145" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="175" width="12" height="8" fill="#777" rx="1"/>
+              <rect x="278" y="205" width="12" height="8" fill="#777" rx="1"/>
+              <!-- Soil both sides -->
+              <rect x="0" y="0" width="80" height="250" fill="#5a3a1a" opacity="0.6"/>
+              <rect x="320" y="0" width="80" height="250" fill="#5a3a1a" opacity="0.6"/>
+              <text x="145" y="240" fill="#f26419" font-size="10" font-family="sans-serif" font-weight="bold" opacity="0.8">COMPLETED WALL</text>
+            </svg>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">RE Wall · Completed</div>
+          <div class="project-title">PWD Highway RE Retaining Wall — TN</div>
+          <div class="project-meta">
+            <span>📍 Trichy, TN</span>
+            <span>📏 3.8 km</span>
+            <span>🗓️ 2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-banner">
+    <div class="cta-banner-content">
+      <h2 class="cta-title">HAVE A PROJECT IN MIND?</h2>
+      <p class="cta-sub">Let's discuss your requirements and provide a competitive quote.</p>
+      <button class="btn-dark" onclick="showPage('contact')">Contact Us Today →</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Road<span>Craft</span>  </div>
+        <p class="footer-desc">Specialists in RE panel systems and road construction across India.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Casting of RE Panels</a></li>
+          <li><a href="#">Erection of RE Panels</a></li>
+          <li><a href="#">Level Pad Construction</a></li>
+          <li><a href="#">Road Formation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 +91 98765 43210</a></li>
+          <li><a href="#">✉️ info@Mahim Project Solution .in</a></li>
+          <li><a href="#">📍 Hyderabad, Telangana</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Mahim Project Solution  . All rights reserved.</span>
+      <span class="footer-tagline">BUILDING INDIA'S ROADS</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ ABOUT PAGE ============ -->
+<div class="page" id="about">
+  <div class="about-hero" style="padding-top:5rem;">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-tag">Our Story</div>
+      <h1 class="section-title">ABOUT <span>US</span></h1>
+      <p style="color:var(--gray);max-width:600px;margin-top:1rem;font-size:1.05rem;line-height:1.7;">Over a decade of building  structure that connects communities and drives development.</p>
+    </div>
+  </div>
+
+  <div style="padding:0 5%;max-width:1400px;margin:0 auto;">
+    <div class="about-grid">
+      <div>
+        <div class="about-body">
+          <p>Mahim Project Solution   is a specialized road and  structure construction company with over <strong>12 years of experience</strong> delivering high-quality RE panel systems and road construction works across South India.</p>
+          <p>We were founded with a single mission: to build roads that are structurally sound, built on time, and built to last. From our own casting yards producing Reinforced Earth facing panels, to our experienced erection crews with a full fleet of cranes and equipment — we control every stage of the build.</p>
+          <div class="about-highlight">"We don't just build roads — we build the backbone of regions."</div>
+          <p>Our core specialisation lies in <strong>Reinforced Earth (RE) wall systems</strong> — from designing and operating casting yards, to precision panel erection and engineered fill placement. We have successfully delivered projects for NHAI, state PWD departments, and major EPC contractors across Andhra Pradesh, Telangana, Tamil Nadu, and Karnataka.</p>
+          <p>Our team of qualified engineers, experienced supervisors, and skilled tradespeople work together to ensure every project is completed safely, on schedule, and to the highest quality standards.</p>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="section-tag" style="margin-bottom:1.5rem;">Our Core Values</div>
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-icon">⚙️</div>
+            <div class="value-name">Precision</div>
+            <div class="value-desc">Every panel cast, every wall erected — to exact tolerances. No shortcuts.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🛡️</div>
+            <div class="value-name">Safety</div>
+            <div class="value-desc">Zero LTI policy. Trained crews, PPE compliance, and daily toolbox talks.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">⏱️</div>
+            <div class="value-name">On Time</div>
+            <div class="value-desc">We understand project timelines. Our planning ensures on-time delivery.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🔬</div>
+            <div class="value-name">Quality</div>
+            <div class="value-desc">IS code compliance, third-party tests, and strict QA documentation.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🤝</div>
+            <div class="value-name">Partnership</div>
+            <div class="value-desc">We work as partners to our clients — transparent, communicative, and accountable.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌱</div>
+            <div class="value-name">Sustainability</div>
+            <div class="value-desc">Responsible construction practices that minimise environmental impact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milestones -->
+    <div style="padding-bottom:5rem;">
+      <div class="section-tag">Our Journey</div>
+      <h2 class="section-title" style="margin-bottom:3rem;">KEY <span>MILESTONES</span></h2>
+      <div class="milestones">
+        <div class="milestone-line"></div>
+        <div class="milestone">
+          <div class="milestone-year">2012</div>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">Company Founded</div>
+            <div class="milestone-desc">Started operations with road earthwork and formation contracts in Telangana.</div>
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-year">2015</div>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">First RE Panel Contract</div>
+            <div class="milestone-desc">Won our first Reinforced Earth panel erection contract for a state highway project.</div>
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-year">2017</div>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">Own Casting Yard Established</div>
+            <div class="milestone-desc">Set up our first in-house casting yard with proprietary steel moulds, enabling full project control.</div>
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-year">2019</div>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">NHAI Empanelment</div>
+            <div class="milestone-desc">Empanelled as an approved contractor for National Highways Authority of India projects.</div>
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-year">2022</div>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">ISO 9001:2015 Certified</div>
+            <div class="milestone-desc">Achieved ISO 9001:2015 certification for our quality management systems.</div>
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-year">2026</div>
+          <div class="milestone-dot"></div>
+          <div class="milestone-content">
+            <div class="milestone-title">500 KM Milestone</div>
+            <div class="milestone-desc">Crossed 500 km of completed road and RE wall projects across 4 states.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-banner">
+    <div class="cta-banner-content">
+      <h2 class="cta-title">LET'S BUILD TOGETHER</h2>
+      <p class="cta-sub">We're always looking for new project opportunities and partnerships.</p>
+      <button class="btn-dark" onclick="showPage('contact')">Get in Touch →</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Road<span>Craft</span>  </div>
+        <p class="footer-desc">Specialists in RE panel systems and road construction across India.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Casting of RE Panels</a></li>
+          <li><a href="#">Erection of RE Panels</a></li>
+          <li><a href="#">Level Pad Construction</a></li>
+          <li><a href="#">Road Formation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 +91 98765 43210</a></li>
+          <li><a href="#">✉️ info@Mahim Project Solution .in</a></li>
+          <li><a href="#">📍 Hyderabad, Telangana</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Mahim Project Solution  . All rights reserved.</span>
+      <span class="footer-tagline">BUILDING INDIA'S ROADS</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ CONTACT / QUOTE PAGE ============ -->
+<div class="page" id="contact">
+  <div class="contact-hero" style="padding-top:5rem;">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div class="section-tag">Get in Touch</div>
+      <h1 class="section-title">REQUEST A <span>QUOTE</span></h1>
+      <p style="color:var(--gray);max-width:600px;margin-top:1rem;font-size:1.05rem;line-height:1.7;">Fill in your project details below and we'll respond with a detailed quote within 24 hours.</p>
+    </div>
+  </div>
+
+  <div style="padding:0 5%;max-width:1400px;margin:0 auto;">
+    <div class="contact-layout">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h2 class="contact-info-title">LET'S TALK ABOUT YOUR PROJECT</h2>
+        <p class="contact-info-sub">Whether you need RE panel casting, erection, road formation, or a full turnkey package — we're ready to discuss your requirements and provide a competitive quote.</p>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-value">+91 98765 43210</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">info@Mahim Project Solution .in</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Head Office</div>
+              <div class="contact-item-value">Hyderabad, Telangana — 500 032</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕑</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Working Hours</div>
+              <div class="contact-item-value">Mon – Sat: 9:00 AM – 6:00 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:rgba(242,100,25,0.05);border:1px solid var(--border);padding:2rem;">
+          <div class="section-tag" style="margin-bottom:1rem;">Our Response Promise</div>
+          <p style="color:var(--light-gray);font-size:0.9rem;line-height:1.7;">We acknowledge every enquiry within <strong style="color:var(--white);">4 hours</strong> during business hours, and provide a full quote within <strong style="color:var(--white);">24 hours</strong> of receiving complete project details.</p>
+        </div>
+      </div>
+
+      <!-- Quote Form -->
+      <div class="quote-form">
+        <div id="formContent">
+          <div class="form-title">GET A FREE QUOTE</div>
+          <div class="form-subtitle">Fill in the details below — the more info you provide, the more accurate our quote.</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Full Name *</label>
+              <input type="text" id="fname" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Organisation</label>
+              <input type="text" id="company" placeholder="Your company name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" placeholder="ANIL.ASTAGE@GMAIL.COM" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Required *</label>
+            <select id="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="casting">Casting of RE Panels</option>
+              <option value="erection">Erection of RE Panels</option>
+              <option value="levelpad">Level Pad Construction</option>
+              <option value="roadformation">Road Formation & Earthwork</option>
+              <option value="transport">Material Transport & Logistics</option>
+              <option value="fullpackage">Full Turnkey Package</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="location">Project Location *</label>
+              <input type="text" id="location" placeholder="City, State" required>
+            </div>
+            <div class="form-group">
+              <label for="timeline">Expected Start Date</label>
+              <input type="text" id="timeline" placeholder="e.g. June 2026 or ASAP">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quantity">Quantity / Scale</label>
+              <input type="text" id="quantity" placeholder="e.g. 5,000 panels / 8 km">
+            </div>
+            <div class="form-group">
+              <label for="budget">Approximate Budget</label>
+              <input type="text" id="budget" placeholder="e.g. ₹50L – ₹1Cr">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Project Details & Requirements</label>
+            <textarea id="message" placeholder="Please describe your project — wall height, panel type, road specifications, site conditions, existing drawings, or any other relevant details..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="heardFrom">How did you hear about us?</label>
+            <select id="heardFrom">
+              <option value="" disabled selected>Select an option</option>
+              <option value="referral">Referral / Word of mouth</option>
+              <option value="google">Google Search</option>
+              <option value="nhai">NHAI / Tender Portal</option>
+              <option value="existing">Existing Client</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-submit">
+            <button class="btn-primary" onclick="submitForm()">SEND QUOTE REQUEST →</button>
+          </div>
+          <p class="form-note">🔒 Your information is kept confidential and used only to respond to your enquiry.</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✅</div>
+          <div class="success-title">QUOTE REQUEST SENT!</div>
+          <p class="success-msg">Thank you for reaching out. Our team will review your requirements and respond within 24 hours.<br><br>A confirmation has been sent to your email.</p>
+          <button class="btn-primary" style="margin-top:2rem;" onclick="resetForm()">SUBMIT ANOTHER ENQUIRY</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="margin-top:5rem;">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Road<span>Craft</span>  </div>
+        <p class="footer-desc">Specialists in RE panel systems and road construction across India.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Casting of RE Panels</a></li>
+          <li><a href="#">Erection of RE Panels</a></li>
+          <li><a href="#">Level Pad Construction</a></li>
+          <li><a href="#">Road Formation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 +91 98765 43210</a></li>
+          <li><a href="#">✉️ info@Mahim Project Solution .in</a></li>
+          <li><a href="#">📍 Hyderabad, Telangana</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Mahim Project Solution  . All rights reserved.</span>
+      <span class="footer-tagline">BUILDING INDIA'S ROADS</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  window.scrollTo(0, 0);
+  // close mobile menu
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function submitForm() {
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const service = document.getElementById('service').value;
+
+  if (!name || !email || !phone || !service) {
+    alert('Please fill in all required fields (marked with *).');
+    return;
+  }
+
+  // Build mailto link
+  const subject = encodeURIComponent('Quote Request from ' + name);
+  const body = encodeURIComponent(
+    'QUOTE REQUEST — Mahim Project Solution  \n' +
+    '================================\n\n' +
+    'Name: ' + name + '\n' +
+    'Company: ' + document.getElementById('company').value + '\n' +
+    'Email: ' + email + '\n' +
+    'Phone: ' + phone + '\n\n' +
+    'Service Required: ' + service + '\n' +
+    'Project Location: ' + document.getElementById('location').value + '\n' +
+    'Expected Start: ' + document.getElementById('timeline').value + '\n' +
+    'Quantity / Scale: ' + document.getElementById('quantity').value + '\n' +
+    'Approximate Budget: ' + document.getElementById('budget').value + '\n\n' +
+    'Project Details:\n' + document.getElementById('message').value + '\n\n' +
+    'Heard from: ' + document.getElementById('heardFrom').value
+  );
+
+  // Open email client
+  window.location.href = 'mailto:info@Mahim Project Solution .in?subject=' + subject + '&body=' + body;
+
+  // Show success
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+}
+
+function resetForm() {
+  document.getElementById('formContent').style.display = 'block';
+  document.getElementById('formSuccess').classList.remove('show');
+  document.getElementById('fname').value = '';
+  document.getElementById('company').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('service').value = '';
+  document.getElementById('location').value = '';
+  document.getElementById('timeline').value = '';
+  document.getElementById('quantity').value = '';
+  document.getElementById('budget').value = '';
+  document.getElementById('message').value = '';
+  document.getElementById('heardFrom').value = '';
+}
+
+// Filter buttons (visual only)
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
